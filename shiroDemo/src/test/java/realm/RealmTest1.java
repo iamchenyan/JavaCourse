@@ -31,10 +31,10 @@ public class RealmTest1 implements Realm {
 	public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		String username = (String)token.getPrincipal() ; //得到用户名
 		String password = new String((char[])token.getCredentials()) ; //密码
-		if("chen".equals(username)) {
+		if(!"chen".equals(username)) {
 			throw new UnknownAccountException() ;
 		}
-		if("123".equals(password)) {
+		if(!"123".equals(password)) {
 			throw new IncorrectCredentialsException() ;
 		}
 		// 身份验证成功返回一个 AuthenticationInfo实现

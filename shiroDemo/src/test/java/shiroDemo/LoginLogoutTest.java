@@ -15,7 +15,7 @@ import org.junit.Assert;
  */
 public class LoginLogoutTest {
 	
-	public void testHelloShiro() {
+	public static void testHelloShiro() {
 		/**
 		 * 1.首先通过 new IniSecurityManagerFactory(String iniResourcePath) ,指定ini配置文件用来创建 SecurityManager 工厂
 		 * 2.获取SecurityManager 并绑定到 SecurityUtils ,全局设置，设置一次即可
@@ -63,8 +63,10 @@ public class LoginLogoutTest {
 		try {
 			//4.登录（身份验证）
 			subject.login(token) ;
+			System.out.println("-----------登录成功-----------");
 		} catch (AuthenticationException e) {
 			//身份验证失败
+			System.out.println("-----------登录失败-----------");
 		}
 		
 		Assert.assertEquals(true, subject.isAuthenticated()) ; //断言用户已经登录
@@ -73,7 +75,10 @@ public class LoginLogoutTest {
 		subject.logout() ;
 	}
 	
-	public void testSingleRealm() {
+	/**
+	 * 用于测试 指定realm(域)
+	 */
+	public static void testSingleRealm() {
 		//1.通过ini配置文件(shiro-realm.ini) ,获得SecurityManager工厂(factory) 
 		Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-realm.ini") ;
 		//2.得到SecurityManager实例 (securityManager) ,并绑定给 SecurityUtils
@@ -86,8 +91,10 @@ public class LoginLogoutTest {
 		try {
 			//4.登录（身份验证）
 			subject.login(token) ;
+			System.out.println("-----------登录成功-----------");
 		} catch (AuthenticationException e) {
 			//身份验证失败
+			System.out.println("-----------登录失败-----------");
 		}
 		
 		Assert.assertEquals(true, subject.isAuthenticated()) ; //断言用户已经登录
@@ -96,6 +103,70 @@ public class LoginLogoutTest {
 		subject.logout() ;
 	}
 	
+	/**
+	 * 用于测试多个realm 的情况：
+	 * 1.securityManager 会按照声明的顺序进行验证，这里显示指定顺序。
+	 * 2.如果不指定，会自动寻找，如果指定了 没指定的将被忽略。
+	 */
+	public static void testMultiRealm() {
+		//1.通过ini配置文件(shiro-realm.ini) ,获得SecurityManager工厂(factory) 
+		Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-multi-realm.ini") ;
+		//2.得到SecurityManager实例 (securityManager) ,并绑定给 SecurityUtils
+		org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance() ;
+		SecurityUtils.setSecurityManager(securityManager) ;
+		//3.得到 Subject 及创建用户名/密码身份验证 Token(用户身份/凭证)
+		Subject subject = SecurityUtils.getSubject() ;
+		//UsernamePasswordToken token = new UsernamePasswordToken("chen" ,"123") ;
+		UsernamePasswordToken token = new UsernamePasswordToken("yan" ,"123") ;
+		
+		try {
+			//4.登录（身份验证）
+			subject.login(token) ;
+			System.out.println("-----------登录成功-----------");
+		} catch (AuthenticationException e) {
+			//身份验证失败
+			System.out.println("-----------登录失败-----------");
+		}
+		
+		Assert.assertEquals(true, subject.isAuthenticated()) ; //断言用户已经登录
+		
+		//5.退出
+		subject.logout() ;
+		
+	}
+	
+	/**
+	 * 用于测试 JdbcRealm使用
+	 */
+	public static void testJdbcRealm() {
+		//1.通过ini配置文件(shiro-realm.ini) ,获得SecurityManager工厂(factory) 
+		Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-jdbc-realm.ini") ;
+		//2.得到SecurityManager实例 (securityManager) ,并绑定给 SecurityUtils
+		org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance() ;
+		SecurityUtils.setSecurityManager(securityManager) ;
+		//3.得到 Subject 及创建用户名/密码身份验证 Token(用户身份/凭证)
+		Subject subject = SecurityUtils.getSubject() ;
+		//UsernamePasswordToken token = new UsernamePasswordToken("chen" ,"123") ;
+		UsernamePasswordToken token = new UsernamePasswordToken("yan" ,"123") ;
+		
+		try {
+			//4.登录（身份验证）
+			subject.login(token) ;
+			System.out.println("-----------登录成功-----------");
+		} catch (AuthenticationException e) {
+			//身份验证失败
+			System.out.println("-----------登录失败-----------");
+		}
+		
+		Assert.assertEquals(true, subject.isAuthenticated()) ; //断言用户已经登录
+		
+		//5.退出
+		subject.logout() ;
+	}
+	
+	public static void main(String[] args) {
+		testJdbcRealm() ;
+	}
 	
 
 }
