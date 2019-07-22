@@ -23,7 +23,7 @@ public class RealmTest3 implements Realm {
 
 	@Override
 	public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		String username = (String)token.getPrincipal() ; //得到用户
+		String username = (String) token.getPrincipal() ; //得到用户
 		String password = new String((char[])token.getCredentials()) ; //得到密码
 		if(!"chen".equals(username)) {
 			throw new UnknownAccountException() ; //用户名错误
