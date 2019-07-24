@@ -16,7 +16,7 @@ public class Permission implements Serializable {
 	
 	public Permission() { }
 
-	public Permission(Long id, String permission, String description, Boolean available) {
+	public Permission(String permission, String description, Boolean available) {
 		this.permission = permission;
 		this.description = description;
 		this.available = available;

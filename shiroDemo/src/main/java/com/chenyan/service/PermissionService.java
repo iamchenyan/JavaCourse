@@ -10,6 +10,6 @@ public interface PermissionService {
 
 	public Permission createPermission(Permission permission)  ;
 	
-	public Permission deletePermission(Long permissionId) ;
+	public void deletePermission(Long permissionId) ;
 	
 }
