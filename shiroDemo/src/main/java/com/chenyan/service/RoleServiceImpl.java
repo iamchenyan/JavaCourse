@@ -1,5 +1,7 @@
 package com.chenyan.service;
 
+import com.chenyan.dao.RoleDao;
+import com.chenyan.dao.RoleDaoImpl;
 import com.chenyan.entity.Role;
 
 /**  
@@ -9,28 +11,36 @@ import com.chenyan.entity.Role;
 */
 public class RoleServiceImpl implements RoleService {
 
+	private RoleDao roleDao = new RoleDaoImpl() ;
+	
 	@Override
 	public Role createRole(Role role) {
-		// TODO Auto-generated method stub
-		return null;
+		return roleDao.createRole(role) ;
 	}
 
 	@Override
 	public void deleteRole(Long roleId) {
-		// TODO Auto-generated method stub
-
+		roleDao.deleteRole(roleId) ;
 	}
 
+	/**
+	 * 添加角色-权限关系
+	 * @param roleId
+	 * @param permissionIds
+	 */
 	@Override
 	public void correlationPermissions(Long roleId, Long... permissionIds) {
-		// TODO Auto-generated method stub
-
+		roleDao.correlationPermissions(roleId, permissionIds) ;
 	}
-
+	
+	/**
+	 * 移除角色-权限关系
+	 * @param roleId
+	 * @param permissionIds
+	 */
 	@Override
 	public void uncorrelationPermissions(Long roleId, Long... permissionIds) {
-		// TODO Auto-generated method stub
-
+		roleDao.uncorrelationPermissions(roleId, permissionIds) ;
 	}
 
 }

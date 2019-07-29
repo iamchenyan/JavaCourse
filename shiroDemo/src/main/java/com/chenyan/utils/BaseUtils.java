@@ -6,6 +6,7 @@ import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 import org.apache.shiro.util.ThreadContext;
+import org.junit.After;
 import org.junit.Before;
 
 import com.chenyan.entity.Permission;
@@ -59,7 +60,7 @@ public abstract class BaseUtils {
 		permissionService.createPermission(p3) ;
 		//2.新增角色
 		r1 = new Role("admin" ,"管理员" ,Boolean.TRUE) ;
-		r1 = new Role("user" ,"用户管理员" ,Boolean.TRUE) ;
+		r2 = new Role("user" ,"用户管理员" ,Boolean.TRUE) ;
 		roleService.createRole(r1) ;
 		roleService.createRole(r2) ;
 		//3.关联角色-权限

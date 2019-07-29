@@ -81,7 +81,7 @@ public class UserDaoImpl implements UserDao {
 		if(roleIds == null || roleIds.length == 0) {
 			return ;
 		}
-		String sql = "delete from sys_users_roles where user_id=? and role_id" ;
+		String sql = "delete from sys_users_roles where user_id=? and role_id=?" ;
 		for(Long roleId : roleIds) {
 			jdbcTemplate.update(sql ,userId ,roleId) ;
 		}
