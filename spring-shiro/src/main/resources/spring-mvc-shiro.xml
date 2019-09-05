@@ -8,6 +8,7 @@
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+	<!-- 定义aop切面 用于代理如@RequiresPermissions注解控制器，进行权限控制 -->
     <aop:config proxy-target-class="true"></aop:config>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>

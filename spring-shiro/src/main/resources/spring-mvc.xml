@@ -20,6 +20,7 @@
 		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
     
+    <!-- 注册@CurrentUser 参数解析 -->
      <mvc:annotation-driven>
      	<mvc:argument-resolvers>
      		<bean class="com.chenyan.springshiro.web.bind.method.CurrentUserMethodArgumentResolver" />
