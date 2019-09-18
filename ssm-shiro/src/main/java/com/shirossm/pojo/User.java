@@ -1,28 +1,35 @@
 package com.shirossm.pojo;
 
-public class User {
-    private Integer id;
+import java.io.Serializable;
 
-    private String userName;
+/**
+* <p>Title: 用户登录</p>  
+* @author chenyan  
+* @date 2019年9月18日
+ */
+public class User implements Serializable {
 
+    //用户id
+    private Long id;
+    //用户登录名
+    private String username;
+    //用户密码
     private String password;
 
-    private Integer age;
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -30,14 +37,6 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
+        this.password = password;
     }
 }
