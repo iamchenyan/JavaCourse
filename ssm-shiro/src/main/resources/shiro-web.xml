@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- shiro 的web过滤器(id对应web.xml中的名字 ) -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- 安全管理器，所有关于安全操作都会经过SucurityManager -->
+		<property name="securityManager" ref="securityManager"/>
+		<!-- 系统认证提交地址，如果用户退出(即session结束)就会访问 -->
+		<property name="loginUrl" value="/login.jsp"/>
+		<!-- 权限验证失败跳转的页面，需要配合spring的ExceptionHandler异常处理机制 -->
+		<property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+		<property name="filters">
+            <util:map>
+                <entry key="authc" value-ref="formAuthenticationFilter"/>
+            </util:map>
+        </property>
+	
+	</bean>
+
+
+</beans>
