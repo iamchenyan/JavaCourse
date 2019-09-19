@@ -1,5 +1,8 @@
 package com.shirossm.mapper;
 
+import java.util.List;
+
+import com.shirossm.pojo.Role;
 import com.shirossm.pojo.User;
 
 /**
@@ -9,5 +12,11 @@ import com.shirossm.pojo.User;
  */
 public interface UserMapper {
 
-    User login(String username);
+    User findByName(String username) ;
+    
+    void create(User user) ;
+    
+    void update(User user) ;
+    
+    List<Role> findRoles(String username) ;
 }

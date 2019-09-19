@@ -5,8 +5,26 @@
 <mapper namespace="com.shirossm.mapper.UserMapper">
 
     <!-- 用户登录的方法 -->
-    <select id="login" parameterType="com.shirossm.pojo.User" resultType="User">
+    <select id="findByName" parameterType="com.shirossm.pojo.User" resultType="User">
         select * from tb_user where username = #{username}
     </select>
+
+	<insert id="create" parameterType="com.shirossm.pojo.User">
+		INSERT INTO
+        sys_users(username,password,salt,locked)
+        VALUES
+        (#{username},#{password},#{salt},#{locked})
+	</insert>
+
+	<select id="findRoles" parameterType="String" resultType="com.shirossm.pojo.Role">
+		SELECT r.id, r.role, r.description FROM
+        sys_users u, sys_roles r, sys_users_roles ur
+        WHERE
+        u.username = #{username}
+        AND
+        u.id = ur.user_id
+        AND
+        r.id = ur.role_id
+	</select>
 
 </mapper>

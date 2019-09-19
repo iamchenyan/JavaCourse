@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shirossm.mapper.UserMapper;
+import com.shirossm.pojo.Role;
 import com.shirossm.pojo.User;
+import com.shirossm.service.PasswordHelper;
 import com.shirossm.service.UserService;
 
 /**
@@ -19,13 +21,16 @@ public class UserServiceImpl implements UserService {
 
     //注入
     @Autowired
-    private UserMapper userMapper;
+    private UserMapper userMapper ;
+    
+    @Autowired
+    private PasswordHelper passwordHelper ;
 
     /**
      * 用户登录的方法
      */
-    public User login(String username) {
-        return userMapper.login(username);
+    public User findByName(String username) {
+        return userMapper.findByName(username);
     }
 
     public List<User> findAll() {
@@ -36,15 +41,37 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    /**
+     * 创建用户
+     * @param user
+     */
     public void create(User user) {
-
+    	//加密
+    	passwordHelper.encryptPassword(user) ;
+    	userMapper.create(user) ;
     }
 
     public void delete(Long id) {
 
     }
-
+    
+    /**
+     * 修改用户
+     * @param user
+     */
     public void update(User user) {
-
+    	//加密
+    	passwordHelper.encryptPassword(user) ;
+    	userMapper.update(user) ;
     }
+
+    /**
+     * 根据用户名查找其角色
+     * @param username
+     * @return roles
+     */
+	@Override
+	public List<Role> findRoles(String username) {
+		return userMapper.findRoles(username) ;
+	}
 }
