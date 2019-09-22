@@ -2,6 +2,7 @@ package com.shirossm.mapper;
 
 import java.util.List;
 
+import com.shirossm.pojo.Permission;
 import com.shirossm.pojo.Role;
 import com.shirossm.pojo.User;
 
@@ -19,4 +20,6 @@ public interface UserMapper {
     void update(User user) ;
     
     List<Role> findRoles(String username) ;
+    
+    List<Permission> findPermissions(String username) ;
 }

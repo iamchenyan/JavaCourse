@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shirossm.mapper.UserMapper;
+import com.shirossm.pojo.Permission;
 import com.shirossm.pojo.Role;
 import com.shirossm.pojo.User;
 import com.shirossm.service.PasswordHelper;
@@ -73,5 +74,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<Role> findRoles(String username) {
 		return userMapper.findRoles(username) ;
+	}
+
+	/**
+     * 根据用户名查找其他权限
+     * @param username
+     * @return
+     */
+	@Override
+	public List<Permission> findPermissions(String username) {
+		return userMapper.findPermissions(username) ;
 	}
 }

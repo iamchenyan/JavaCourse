@@ -1,6 +1,7 @@
 package com.shirossm.realm;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.shiro.authc.AuthenticationException;
@@ -13,8 +14,11 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.shirossm.pojo.Permission;
+import com.shirossm.pojo.Role;
 import com.shirossm.pojo.User;
 import com.shirossm.service.UserService;
 
@@ -43,11 +47,18 @@ public class UserRealm extends AuthorizingRealm{
 		
 		//
 		Set<String> role = new HashSet<String>() ;
-		userService.findRoles(username) ;
-		
-		
-		
-		return null;
+		List<Role> roles = userService.findRoles(username) ;
+		for(Role r : roles) {
+			role.add(r.getRole()) ;
+		}
+		authorizationInfo.setRoles(role) ;
+		Set<String> permission = new HashSet<String>() ;
+		List<Permission> permissions = userService.findPermissions(username) ;
+		for(Permission p : permissions) {
+			permission.add(p.getPermission()) ;
+		}
+		authorizationInfo.setStringPermissions(permission) ;
+		return authorizationInfo ;
 	}
 
 	/**
@@ -66,13 +77,41 @@ public class UserRealm extends AuthorizingRealm{
 		if(Boolean.TRUE.equals(user.getLocked())) {
 			throw new LockedAccountException() ; //账号锁定
 		}
-		//密码匹配
+		//AuthenticationRealm使用CredentialsMatcher进行密码匹配
 		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUsername(), //用户名
                 user.getPassword(), //密码
+                ByteSource.Util.bytes(user.getCredentialsSalt()) , //salt = username+salt
                 getName() //realm name
         ) ;
         return authenticationInfo ;
 	}
 
+	@Override
+    public void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthorizationInfo(principals);
+    }
+
+    @Override
+    public void clearCachedAuthenticationInfo(PrincipalCollection principals) {
+        super.clearCachedAuthenticationInfo(principals);
+    }
+
+    @Override
+    public void clearCache(PrincipalCollection principals) {
+        super.clearCache(principals);
+    }
+
+    public void clearAllCachedAuthorizationInfo() {
+        getAuthorizationCache().clear();
+    }
+
+    public void clearAllCachedAuthenticationInfo() {
+        getAuthenticationCache().clear();
+    }
+
+    public void clearAllCache() {
+        clearAllCachedAuthenticationInfo();
+        clearAllCachedAuthorizationInfo();
+    }
 }

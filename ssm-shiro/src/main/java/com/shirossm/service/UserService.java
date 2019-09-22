@@ -2,6 +2,7 @@ package com.shirossm.service;
 
 import java.util.List;
 
+import com.shirossm.pojo.Permission;
 import com.shirossm.pojo.Role;
 import com.shirossm.pojo.User;
 
@@ -25,5 +26,12 @@ public interface UserService extends BaseService<User> {
 	 * @return
 	 */
     User findByName(String username) ;
+    
+    /**
+     * 根据用户名查找其他权限
+     * @param username
+     * @return
+     */
+    List<Permission> findPermissions(String username) ;
     
 }

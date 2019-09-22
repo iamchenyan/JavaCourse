@@ -26,5 +26,21 @@
         AND
         r.id = ur.role_id
 	</select>
+	
+	<!-- 根据用户名查找其它权限 -->
+	<select id="findPermissions" parameterType="String" resultType="com.shirossm.pojo.Permission">
+        SELECT p.id, p.permission, p.description FROM
+        sys_users u, sys_roles r, sys_permissions p, sys_users_roles ur, sys_roles_permissions rp
+        WHERE
+        u.username = #{username}
+        AND
+        u.id = ur.user_id
+        AND
+        r.id = ur.role_id
+        AND
+        r.id = rp.role_id
+        AND
+        p.id = rp.permission_id
+    </select>
 
 </mapper>
