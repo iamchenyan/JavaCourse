@@ -14,11 +14,7 @@
  	<!-- 加载Spring配置  -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>
-        	classpath:applicationContext.xml
-        	classpath:spring-mvc.xml
-        	classpath:shiro-web.xml
-        </param-value>
+        <param-value>classpath:spring-*.xml</param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -53,16 +49,6 @@
         <!-- 设置这个字符编码过滤器作用与每一个请求 -->
         <url-pattern>/*</url-pattern>
     </filter-mapping>
- 	
- 	<!-- 配置Spring的servlet监听器 -->
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-    <!-- 加载spring容器 -->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicaptionContext.xml</param-value>
-    </context-param>
  	
  	<!-- 配置springmvc的前端控制器，request请求会先经过这个控制器 -->
     <servlet>

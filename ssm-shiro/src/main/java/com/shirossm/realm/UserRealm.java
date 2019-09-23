@@ -45,18 +45,19 @@ public class UserRealm extends AuthorizingRealm{
 		
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo() ;
 		
-		//
 		Set<String> role = new HashSet<String>() ;
 		List<Role> roles = userService.findRoles(username) ;
 		for(Role r : roles) {
 			role.add(r.getRole()) ;
 		}
 		authorizationInfo.setRoles(role) ;
+		
 		Set<String> permission = new HashSet<String>() ;
 		List<Permission> permissions = userService.findPermissions(username) ;
 		for(Permission p : permissions) {
 			permission.add(p.getPermission()) ;
 		}
+		
 		authorizationInfo.setStringPermissions(permission) ;
 		return authorizationInfo ;
 	}
@@ -68,7 +69,7 @@ public class UserRealm extends AuthorizingRealm{
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		
+		System.out.println("身份校验--执行了goGetAuthenticationInfo...");
 		String username =  (String)token.getPrincipal() ;
 		User user = userService.findByName(username) ;
 		if(user == null) {
