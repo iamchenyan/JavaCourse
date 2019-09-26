@@ -34,4 +34,16 @@ public interface UserService extends BaseService<User> {
      */
     List<Permission> findPermissions(String username) ;
     
+    /**
+     * 添加用户-角色关系
+     * @param userId
+     * @param roleIds
+     */
+    void correlationRoles(Long userId ,Long... roleIds) ;
+    
+    /**
+     * 删除此用户关联的所有角色信息
+     * @param id
+     */
+    void deleteAllUserRoles(Long id) ;
 }

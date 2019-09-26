@@ -52,7 +52,6 @@ public class UserRealm extends AuthorizingRealm {
 			//账号锁定
 			throw new LockedAccountException() ;
 		}
-		
 		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
 				user.getUsername() , //用户名
 				user.getPassword() , //密码

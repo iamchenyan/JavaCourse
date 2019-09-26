@@ -19,7 +19,13 @@ public interface UserMapper {
     
     void update(User user) ;
     
+    List<User> findAll() ;
+    
     List<Role> findRoles(String username) ;
     
     List<Permission> findPermissions(String username) ;
+    
+    void correlationRoles(Long userId ,Long... roleIds) ;
+
+    void deleteAllUserRoles(Long id) ;
 }

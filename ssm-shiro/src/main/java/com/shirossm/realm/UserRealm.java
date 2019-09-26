@@ -3,7 +3,6 @@ package com.shirossm.realm;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,11 +11,11 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.shirossm.pojo.Permission;
 import com.shirossm.pojo.Role;
 import com.shirossm.pojo.User;
@@ -78,13 +77,13 @@ public class UserRealm extends AuthorizingRealm{
 		if(Boolean.TRUE.equals(user.getLocked())) {
 			throw new LockedAccountException() ; //账号锁定
 		}
-		//AuthenticationRealm使用CredentialsMatcher进行密码匹配
+		
 		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-                user.getUsername(), //用户名
-                user.getPassword(), //密码
-                ByteSource.Util.bytes(user.getCredentialsSalt()) , //salt = username+salt
-                getName() //realm name
-        ) ;
+				user.getUsername() , //用户名
+				user.getPassword() , //密码
+				ByteSource.Util.bytes(user.getCredentialsSalt()) , //salt=username+salt
+				getName() //realm name
+			) ;
         return authenticationInfo ;
 	}
 

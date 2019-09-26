@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<User> findAll() {
-        return null;
+        return userMapper.findAll() ;
     }
 
     public User findById(Long id) {
@@ -85,4 +85,21 @@ public class UserServiceImpl implements UserService {
 	public List<Permission> findPermissions(String username) {
 		return userMapper.findPermissions(username) ;
 	}
+	
+	/**
+     * 添加用户-角色关系
+     * @param userId
+     * @param roleIds
+     */
+	@Override
+	public void correlationRoles(Long userId, Long... roleIds) {
+		userMapper.correlationRoles(userId, roleIds) ;
+	}
+
+	@Override
+	public void deleteAllUserRoles(Long id) {
+		userMapper.deleteAllUserRoles(id) ;
+	}
+	
+	
 }

@@ -6,7 +6,7 @@
 
     <!-- 用户登录的方法 -->
     <select id="findByName" parameterType="com.shirossm.pojo.User" resultType="User">
-        select * from tb_user where username = #{username}
+        select * from sys_users where username = #{username}
     </select>
 
 	<insert id="create" parameterType="com.shirossm.pojo.User">
@@ -15,6 +15,11 @@
         VALUES
         (#{username},#{password},#{salt},#{locked})
 	</insert>
+	
+	<!-- 查询所有用户 -->
+	<select id="findAll" resultType="com.shirossm.pojo.User">
+		select * from sys_users
+	</select>
 
 	<select id="findRoles" parameterType="String" resultType="com.shirossm.pojo.Role">
 		SELECT r.id, r.role, r.description FROM
@@ -42,5 +47,15 @@
         AND
         p.id = rp.permission_id
     </select>
+    
+    <!-- 创建用户-角色关系 -->
+    <insert id="correlationRoles" parameterType="Long">
+        INSERT INTO sys_users_roles(user_id, role_id) VALUES(#{userId}, #{roleId})
+    </insert>
+
+	<!-- 删除此用户关联的所有角色信息 -->
+    <delete id="deleteAllUserRoles" parameterType="Long">
+        DELETE FROM sys_users_roles WHERE user_id = #{id}
+    </delete>
 
 </mapper>
