@@ -19,12 +19,14 @@
 <body>
 
 <shiro:guest>
-    <label style="margin-left: 20px;">欢迎游客访问,<a href="${pageContext.request.contextPath}/login.jsp">点击登录</a><br/></label>
+    <label style="margin-left: 20px;">欢迎游客访问,<a
+            href="${pageContext.request.contextPath}/login.jsp">点击登录</a><br/></label>
 </shiro:guest>
 
 <shiro:user>
     <br/>
-    <label style="margin-left: 20px;">欢迎：[<shiro:principal/>]登录，<a href="${pageContext.request.contextPath}/logout">点击退出</a></label>
+    <label style="margin-left: 20px;">欢迎：[<shiro:principal/>]登录，<a
+            href="${pageContext.request.contextPath}/logout">点击退出</a></label>
     <br/>
     <hr/>
     <br/>
@@ -74,7 +76,8 @@
                                        value="状态"/>
                                 <input type="button" class="btn btn-success btn-sm" onclick="edit(${permission.id})"
                                        value="编辑"/>
-                                <input type="button" class="btn btn-danger btn-sm" onclick="deleteRole(${permission.id})"
+                                <input type="button" class="btn btn-danger btn-sm"
+                                       onclick="deleteRole(${permission.id})"
                                        value="删除"/>
                             </td>
                         </tr>

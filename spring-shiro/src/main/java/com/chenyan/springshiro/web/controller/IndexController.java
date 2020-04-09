@@ -14,31 +14,32 @@ import com.chenyan.springshiro.service.ResourceService;
 import com.chenyan.springshiro.service.UserService;
 import com.chenyan.springshiro.web.bind.annotation.CurrentUser;
 
-/**  
-* <p>Title: IndexController</p>  
-* @author chenyan  
-* @date 2019年9月3日  
-*/
+/**
+ * <p>Title: IndexController</p>
+ *
+ * @author chenyan
+ * @date 2019年9月3日
+ */
 @Controller
 public class IndexController {
 
-	@Autowired
-	private ResourceService resourceService ;
-	
-	@Autowired
-	private UserService userService ;
-	
-	@RequestMapping("/")
-	public String index(@CurrentUser User loginUser ,Model model) {
-		Set<String> permissions = userService.findPermissions(loginUser.getUsername()) ;
-		List<Resource> menus = resourceService.findMenus(permissions) ;
-		model.addAttribute("menus" ,menus) ;
-		return "index" ;
-	}
-	
-	@RequestMapping("/welcome")
-	public String welcame() {
-		return "welcome" ;
-	}
-	
+    @Autowired
+    private ResourceService resourceService;
+
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping("/")
+    public String index(@CurrentUser User loginUser, Model model) {
+        Set<String> permissions = userService.findPermissions(loginUser.getUsername());
+        List<Resource> menus = resourceService.findMenus(permissions);
+        model.addAttribute("menus", menus);
+        return "index";
+    }
+
+    @RequestMapping("/welcome")
+    public String welcame() {
+        return "welcome";
+    }
+
 }

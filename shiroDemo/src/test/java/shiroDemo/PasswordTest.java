@@ -9,13 +9,14 @@ import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.junit.Test;
 
 /**
-* <p>Title: PasswordTest</p>  
-* @author chenyan  
-* @date 2019年7月22日
+ * <p>Title: PasswordTest</p>
+ *
+ * @author chenyan
+ * @date 2019年7月22日
  */
 public class PasswordTest extends BaseTest {
 
-	@Test
+    @Test
     public void testPasswordServiceWithMyRealm() {
         login("classpath:shiro-passwordservice.ini", "chen", "123");
     }
@@ -61,6 +62,7 @@ public class PasswordTest extends BaseTest {
         protected String convertToString(final Object value) throws Throwable {
             return ((Enum) value).name();
         }
+
         @Override
         protected Object convertToType(final Class type, final Object value) throws Throwable {
             return Enum.valueOf(type, value.toString());
@@ -75,12 +77,12 @@ public class PasswordTest extends BaseTest {
 
     @Test(expected = ExcessiveAttemptsException.class)
     public void testRetryLimitHashedCredentialsMatcherWithMyRealm() {
-        for(int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 5; i++) {
             try {
                 login("classpath:shiro-retryLimitHashedCredentialsMatcher.ini", "liu", "234");
             } catch (Exception e) {/*ignore*/}
         }
         login("classpath:shiro-retryLimitHashedCredentialsMatcher.ini", "liu", "234");
     }
-	
+
 }

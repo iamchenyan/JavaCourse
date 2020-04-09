@@ -277,7 +277,7 @@ $(".create-sure").click(function () {
     var zTree = $.fn.zTree.getZTreeObj("tree-create");//获取zTree对象
     let checkedNodes = zTree.getCheckedNodes();
     var pid = 0; //如果没有勾选角色，默认是0
-    if (checkedNodes.length > 0){
+    if (checkedNodes.length > 0) {
         //checkedNodes是被勾选数据的集合数组，且是被如果有父节点被选中，那么数组中这个父节点一定在其被选子节点的后面，取数组最后位置得索引即可得到最底层节点的数据
         pid = checkedNodes[checkedNodes.length - 1].id
     }

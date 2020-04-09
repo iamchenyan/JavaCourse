@@ -2,7 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/JQuery zTree v3.5.15/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/static/JQuery zTree v3.5.15/css/zTreeStyle/zTreeStyle.css">
 </head>
 <body>
 
@@ -18,20 +19,20 @@
                     enable: true
                 }
             },
-            callback : {
-                onClick : function(event, treeId, treeNode) {
-                    parent.frames['content'].location.href = "${pageContext.request.contextPath}/organization/"+treeNode.id+"/maintain";
+            callback: {
+                onClick: function (event, treeId, treeNode) {
+                    parent.frames['content'].location.href = "${pageContext.request.contextPath}/organization/" + treeNode.id + "/maintain";
                 }
             }
         };
 
-        var zNodes =[
+        var zNodes = [
             <c:forEach items="${organizationList}" var="o">
-                { id:${o.id}, pId:${o.parentId}, name:"${o.name}", open:${o.rootNode}},
+            {id:${o.id}, pId:${o.parentId}, name: "${o.name}", open:${o.rootNode}},
             </c:forEach>
         ];
 
-        $(document).ready(function(){
+        $(document).ready(function () {
             $.fn.zTree.init($("#tree"), setting, zNodes);
         });
     });

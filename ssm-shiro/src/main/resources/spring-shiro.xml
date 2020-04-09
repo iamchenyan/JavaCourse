@@ -6,7 +6,7 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<!-- 缓存管理器 使用Ehcache实现 -->
+    <!-- 缓存管理器 使用Ehcache实现 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
     </bean>
@@ -69,13 +69,13 @@
         <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
     </bean>
 
-	<!-- 会话验证调度器 -->
+    <!-- 会话验证调度器 -->
     <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
         <property name="sessionValidationInterval" value="1800000"/>
         <property name="sessionManager" ref="sessionManager"/>
     </bean>
 
-	<!-- 会话管理器 -->
+    <!-- 会话管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <!-- 设置全局会话过期时间：默认30分钟 -->
         <property name="globalSessionTimeout" value="1800000"/>
@@ -92,7 +92,7 @@
         <!-- 会话Cookie -->
         <property name="sessionIdCookie" ref="sessionIdCookie"/>
     </bean>
-    
+
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="userRealm"/>
@@ -101,30 +101,30 @@
         <!-- 设置securityManager安全管理器的rememberMeManger -->
         <property name="rememberMeManager" ref="rememberMeManager"/>
     </bean>
-    
+
     <!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
         <property name="arguments" ref="securityManager"/>
     </bean>
-    
+
     <!-- 基于Form表单的身份验证过滤器 -->
     <bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
-    	<!-- 对应login中的表单参数 -->
+        <!-- 对应login中的表单参数 -->
         <property name="usernameParam" value="username"/>
         <property name="passwordParam" value="password"/>
         <property name="loginUrl" value="/login.jsp"/>
     </bean>
 
-	<!-- shiro 的web过滤器(id对应web.xml中的名字 ) -->
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-		<!-- 安全管理器，所有关于安全操作都会经过SucurityManager -->
-		<property name="securityManager" ref="securityManager"/>
-		<!-- 系统认证提交地址，如果用户退出(即session结束)就会访问 -->
-		<property name="loginUrl" value="/login.jsp"/>
-		<!-- 权限验证失败跳转的页面，需要配合spring的ExceptionHandler异常处理机制 -->
-		<property name="unauthorizedUrl" value="/unauthorized.jsp"/>
-		<property name="filters">
+    <!-- shiro 的web过滤器(id对应web.xml中的名字 ) -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- 安全管理器，所有关于安全操作都会经过SucurityManager -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 系统认证提交地址，如果用户退出(即session结束)就会访问 -->
+        <property name="loginUrl" value="/login.jsp"/>
+        <!-- 权限验证失败跳转的页面，需要配合spring的ExceptionHandler异常处理机制 -->
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <property name="filters">
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
             </util:map>
@@ -152,9 +152,9 @@
                 /** = user
             </value>
         </property>
-	</bean>
-	
-	<!-- Shiro生命周期处理器-->
+    </bean>
+
+    <!-- Shiro生命周期处理器-->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-	
+
 </beans>

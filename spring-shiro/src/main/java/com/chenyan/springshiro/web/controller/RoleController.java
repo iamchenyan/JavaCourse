@@ -13,29 +13,30 @@ import com.chenyan.springshiro.entity.Role;
 import com.chenyan.springshiro.service.ResourceService;
 import com.chenyan.springshiro.service.RoleService;
 
-/**  
-* <p>Title: RoleController</p>  
-* @author chenyan  
-* @date 2019年9月5日  
-*/
+/**
+ * <p>Title: RoleController</p>
+ *
+ * @author chenyan
+ * @date 2019年9月5日
+ */
 @Controller
 @RequestMapping("/role")
 public class RoleController {
 
-	@Autowired
-	private RoleService roleService ;
-	
-	@Autowired
-	private ResourceService resourceService ;
-	
-	@RequiresPermissions("role:view")
-	@RequestMapping(method = RequestMethod.GET)
-	public String list(Model model) {
-		model.addAttribute("roleList" ,roleService.findAll()) ;
-		return "role/list" ;
-	}
-	
-	@RequiresPermissions("role:create")
+    @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private ResourceService resourceService;
+
+    @RequiresPermissions("role:view")
+    @RequestMapping(method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("roleList", roleService.findAll());
+        return "role/list";
+    }
+
+    @RequiresPermissions("role:create")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String showCreateForm(Model model) {
         setCommonData(model);
@@ -51,7 +52,7 @@ public class RoleController {
         redirectAttributes.addFlashAttribute("msg", "新增成功");
         return "redirect:/role";
     }
-    
+
     @RequiresPermissions("role:update")
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
@@ -89,5 +90,5 @@ public class RoleController {
     private void setCommonData(Model model) {
         model.addAttribute("resourceList", resourceService.findAll());
     }
-	
+
 }

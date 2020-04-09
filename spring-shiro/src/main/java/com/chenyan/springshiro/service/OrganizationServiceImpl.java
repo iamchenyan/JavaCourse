@@ -8,15 +8,16 @@ import org.springframework.stereotype.Service;
 import com.chenyan.springshiro.dao.OrganizationDao;
 import com.chenyan.springshiro.entity.Organization;
 
-/**  
-* <p>Title: OrganizationServiceImpl</p>  
-* @author chenyan  
-* @date 2019年9月4日  
-*/
+/**
+ * <p>Title: OrganizationServiceImpl</p>
+ *
+ * @author chenyan
+ * @date 2019年9月4日
+ */
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
-	
-	@Autowired
+
+    @Autowired
     private OrganizationDao organizationDao;
 
     @Override

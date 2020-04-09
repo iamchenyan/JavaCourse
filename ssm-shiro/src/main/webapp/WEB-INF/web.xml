@@ -5,13 +5,13 @@
          version="3.0"
          metadata-complete="false">
 
- 	<display-name>Archetype Created Web Application</display-name>
-	
- 	<welcome-file-list>
-		<welcome-file>/WEB-INF/index.jsp</welcome-file>
- 	</welcome-file-list>
- 	
- 	<!-- 加载Spring配置  -->
+    <display-name>Archetype Created Web Application</display-name>
+
+    <welcome-file-list>
+        <welcome-file>/WEB-INF/index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- 加载Spring配置  -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring-*.xml</param-value>
@@ -19,23 +19,23 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
- 	
- 	<!-- shiro过滤器 -->
- 	<filter>
-	    <filter-name>shiroFilter</filter-name>
-	    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	    <async-supported>true</async-supported>
-	    <init-param>
-	        <param-name>targetFilterLifecycle</param-name>
-	        <param-value>true</param-value>
-	    </init-param>
-	</filter>
-	<filter-mapping>
-	    <filter-name>shiroFilter</filter-name>
-	    <url-pattern>/*</url-pattern>
-	</filter-mapping>
- 	
- 	<!-- spring的字符编码过滤器，保证request请求的中文字符不会乱码（注意这个过滤器要放到最前面） -->
+
+    <!-- shiro过滤器 -->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <async-supported>true</async-supported>
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- spring的字符编码过滤器，保证request请求的中文字符不会乱码（注意这个过滤器要放到最前面） -->
     <filter>
         <filter-name>CharacterEncoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -49,8 +49,8 @@
         <!-- 设置这个字符编码过滤器作用与每一个请求 -->
         <url-pattern>/*</url-pattern>
     </filter-mapping>
- 	
- 	<!-- 配置springmvc的前端控制器，request请求会先经过这个控制器 -->
+
+    <!-- 配置springmvc的前端控制器，request请求会先经过这个控制器 -->
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -65,5 +65,5 @@
         <!-- *.do 表示我们请求映射路径后缀为.do，  我们也可以设置为/ -->
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
-  
+
 </web-app>

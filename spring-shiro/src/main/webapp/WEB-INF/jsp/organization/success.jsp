@@ -4,6 +4,6 @@
     <title></title>
 </head>
 <body>
-    操作成功，<a href="javascript:parent.frames['tree'].location.reload();">点击刷新树</a>
+操作成功，<a href="javascript:parent.frames['tree'].location.reload();">点击刷新树</a>
 </body>
 </html>

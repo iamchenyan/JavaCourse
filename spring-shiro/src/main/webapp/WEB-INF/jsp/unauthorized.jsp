@@ -2,7 +2,9 @@
 <html>
 <head>
     <title>没有权限</title>
-    <style>.error{color:red;}</style>
+    <style>.error {
+        color: red;
+    }</style>
 </head>
 <body>
 

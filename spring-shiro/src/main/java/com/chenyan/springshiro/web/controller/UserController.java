@@ -14,49 +14,50 @@ import com.chenyan.springshiro.service.OrganizationService;
 import com.chenyan.springshiro.service.RoleService;
 import com.chenyan.springshiro.service.UserService;
 
-/**  
-* <p>Title: UserController</p>  
-* @author chenyan  
-* @date 2019年9月5日  
-*/
+/**
+ * <p>Title: UserController</p>
+ *
+ * @author chenyan
+ * @date 2019年9月5日
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
-	@Autowired
-	private UserService userService ;
-	
-	@Autowired
-	private OrganizationService organizationService ;
-	
-	@Autowired
-	private RoleService roleService ;
-	
-	@RequiresPermissions("user:view")
-	@RequestMapping(method = RequestMethod.GET)
-	public String list(Model model) {
-		model.addAttribute("userList" ,userService.findAll()) ;
-		return "user/list" ;
-	}
-	
-	@RequiresPermissions("user:create")
-	@RequestMapping(value = "/create" ,method = RequestMethod.GET)
-	public String showCreateForm(Model model) {
-		setCommonData(model) ;
-		model.addAttribute("user" , new User()) ;
-		model.addAttribute("op" ,"新增") ;
-		return "user/edit" ;
-	}
-	
-	@RequiresPermissions("user:create")
-	@RequestMapping(value = "/create" ,method = RequestMethod.POST)
-	public String create(User user ,RedirectAttributes redirectAttributes) {
-		userService.createUser(user) ;
-		redirectAttributes.addFlashAttribute("msg" ,"新增成功") ;
-		return "redirect:/user" ;
-	}
-	
-	@RequiresPermissions("user:update")
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private OrganizationService organizationService;
+
+    @Autowired
+    private RoleService roleService;
+
+    @RequiresPermissions("user:view")
+    @RequestMapping(method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("userList", userService.findAll());
+        return "user/list";
+    }
+
+    @RequiresPermissions("user:create")
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String showCreateForm(Model model) {
+        setCommonData(model);
+        model.addAttribute("user", new User());
+        model.addAttribute("op", "新增");
+        return "user/edit";
+    }
+
+    @RequiresPermissions("user:create")
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(User user, RedirectAttributes redirectAttributes) {
+        userService.createUser(user);
+        redirectAttributes.addFlashAttribute("msg", "新增成功");
+        return "redirect:/user";
+    }
+
+    @RequiresPermissions("user:update")
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         setCommonData(model);
@@ -64,16 +65,16 @@ public class UserController {
         model.addAttribute("op", "修改");
         return "user/edit";
     }
-	
-	@RequiresPermissions("user:update")
+
+    @RequiresPermissions("user:update")
     @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
     public String update(User user, RedirectAttributes redirectAttributes) {
         userService.updateUser(user);
         redirectAttributes.addFlashAttribute("msg", "修改成功");
         return "redirect:/user";
     }
-	
-	@RequiresPermissions("user:delete")
+
+    @RequiresPermissions("user:delete")
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String showDeleteForm(@PathVariable("id") Long id, Model model) {
         setCommonData(model);
@@ -89,7 +90,7 @@ public class UserController {
         redirectAttributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/user";
     }
-    
+
     @RequiresPermissions("user:update")
     @RequestMapping(value = "/{id}/changePassword", method = RequestMethod.GET)
     public String showChangePasswordForm(@PathVariable("id") Long id, Model model) {
@@ -106,14 +107,14 @@ public class UserController {
         return "redirect:/user";
     }
 
-	/**
-	 * @param model
-	 */
-	private void setCommonData(Model model) {
-		model.addAttribute("organizationList" ,organizationService.findAll()) ;
-		model.addAttribute("roleList" ,roleService.findAll()) ;
-		
-	}
-	
-	
+    /**
+     * @param model
+     */
+    private void setCommonData(Model model) {
+        model.addAttribute("organizationList", organizationService.findAll());
+        model.addAttribute("roleList", roleService.findAll());
+
+    }
+
+
 }

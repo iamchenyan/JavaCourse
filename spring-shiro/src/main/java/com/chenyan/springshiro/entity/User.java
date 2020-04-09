@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-* <p>Title: User</p>  
-* @author chenyan  
-* @date 2019年8月28日
+ * <p>Title: User</p>
+ *
+ * @author chenyan
+ * @date 2019年8月28日
  */
 public class User implements Serializable {
     private Long id; //编号
@@ -74,7 +75,7 @@ public class User implements Serializable {
     }
 
     public List<Long> getRoleIds() {
-        if(roleIds == null) {
+        if (roleIds == null) {
             roleIds = new ArrayList<Long>();
         }
         return roleIds;
@@ -86,11 +87,11 @@ public class User implements Serializable {
 
 
     public String getRoleIdsStr() {
-        if(CollectionUtils.isEmpty(roleIds)) {
+        if (CollectionUtils.isEmpty(roleIds)) {
             return "";
         }
         StringBuilder s = new StringBuilder();
-        for(Long roleId : roleIds) {
+        for (Long roleId : roleIds) {
             s.append(roleId);
             s.append(",");
         }
@@ -98,18 +99,18 @@ public class User implements Serializable {
     }
 
     public void setRoleIdsStr(String roleIdsStr) {
-        if(StringUtils.isEmpty(roleIdsStr)) {
+        if (StringUtils.isEmpty(roleIdsStr)) {
             return;
         }
         String[] roleIdStrs = roleIdsStr.split(",");
-        for(String roleIdStr : roleIdStrs) {
-            if(StringUtils.isEmpty(roleIdStr)) {
+        for (String roleIdStr : roleIdStrs) {
+            if (StringUtils.isEmpty(roleIdStr)) {
                 continue;
             }
             getRoleIds().add(Long.valueOf(roleIdStr));
         }
     }
-    
+
     public Boolean getLocked() {
         return locked;
     }

@@ -19,34 +19,34 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>用户名</th>
-            <th>所属组织</th>
-            <th>角色列表</th>
-            <th>操作</th>
-        </tr>
+    <tr>
+        <th>用户名</th>
+        <th>所属组织</th>
+        <th>角色列表</th>
+        <th>操作</th>
+    </tr>
     </thead>
     <tbody>
-        <c:forEach items="${userList}" var="user">
-            <tr>
-                <td>${user.username}</td>
-                <td>${zhangfn:organizationName(user.organizationId)}</td>
-                <td>${zhangfn:roleNames(user.roleIds)}</td>
-                <td>
-                    <shiro:hasPermission name="user:update">
-                        <a href="${pageContext.request.contextPath}/user/${user.id}/update">修改</a>
-                    </shiro:hasPermission>
+    <c:forEach items="${userList}" var="user">
+        <tr>
+            <td>${user.username}</td>
+            <td>${zhangfn:organizationName(user.organizationId)}</td>
+            <td>${zhangfn:roleNames(user.roleIds)}</td>
+            <td>
+                <shiro:hasPermission name="user:update">
+                    <a href="${pageContext.request.contextPath}/user/${user.id}/update">修改</a>
+                </shiro:hasPermission>
 
-                    <shiro:hasPermission name="user:delete">
-                        <a href="${pageContext.request.contextPath}/user/${user.id}/delete">删除</a>
-                    </shiro:hasPermission>
+                <shiro:hasPermission name="user:delete">
+                    <a href="${pageContext.request.contextPath}/user/${user.id}/delete">删除</a>
+                </shiro:hasPermission>
 
-                    <shiro:hasPermission name="user:update">
-                        <a href="${pageContext.request.contextPath}/user/${user.id}/changePassword">改密</a>
-                    </shiro:hasPermission>
-                </td>
-            </tr>
-        </c:forEach>
+                <shiro:hasPermission name="user:update">
+                    <a href="${pageContext.request.contextPath}/user/${user.id}/changePassword">改密</a>
+                </shiro:hasPermission>
+            </td>
+        </tr>
+    </c:forEach>
     </tbody>
 </table>
 

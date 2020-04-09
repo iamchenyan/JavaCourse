@@ -17,7 +17,7 @@
 <script>
     $(function () {
         $(document).ready(function () {
-            $('body').layout({ applyDemoStyles: true });
+            $('body').layout({applyDemoStyles: true});
         });
     });
 </script>

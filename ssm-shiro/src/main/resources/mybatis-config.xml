@@ -3,21 +3,21 @@
 		http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-    
+
     <settings>
-    	<setting name="mapUnderscoreToCamelCase" value="true"/>
-    	
-    	<!-- mybatis3 sql打印 -->
-    	<setting name="logImpl" value="STDOUT_LOGGING"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <!-- mybatis3 sql打印 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
     </settings>
-    
+
     <!-- 分页插件 -->
     <plugins>
-    	<plugin interceptor="com.github.pagehelper.PageHelper">
-    		<!-- PageHelper 支持Oracle | MySQL | MariaDB | SQLLite | Hsqldb | PostgreSQL 六种类型 -->
-    		<property name="dialect" value="mysql"/>
-    	</plugin>
-    
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <!-- PageHelper 支持Oracle | MySQL | MariaDB | SQLLite | Hsqldb | PostgreSQL 六种类型 -->
+            <property name="dialect" value="mysql"/>
+        </plugin>
+
     </plugins>
-    
+
 </configuration>

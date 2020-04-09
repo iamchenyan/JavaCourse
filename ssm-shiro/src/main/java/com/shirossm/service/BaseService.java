@@ -3,9 +3,10 @@ package com.shirossm.service;
 import java.util.List;
 
 /**
-* <p>Title: BaseService 通用service接口</p>  
-* @author chenyan  
-* @date 2019年9月18日
+ * <p>Title: BaseService 通用service接口</p>
+ *
+ * @author chenyan
+ * @date 2019年9月18日
  */
 public interface BaseService<T> {
 

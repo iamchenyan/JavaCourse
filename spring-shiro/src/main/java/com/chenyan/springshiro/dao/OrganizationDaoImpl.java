@@ -14,18 +14,19 @@ import org.springframework.stereotype.Repository;
 
 import com.chenyan.springshiro.entity.Organization;
 
-/**  
-* <p>Title: OrganizationServiceImpl</p>  
-* @author chenyan  
-* @date 2019年9月4日  
-*/
+/**
+ * <p>Title: OrganizationServiceImpl</p>
+ *
+ * @author chenyan
+ * @date 2019年9月4日
+ */
 @Repository
 public class OrganizationDaoImpl implements OrganizationDao {
-	
-	@Autowired
-	private JdbcTemplate jdbcTemplate ;
 
-	public Organization createOrganization(final Organization organization) {
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    public Organization createOrganization(final Organization organization) {
         final String sql = "insert into sys_organization( name, parent_id, parent_ids, available) values(?,?,?,?)";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
@@ -67,7 +68,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
     public Organization findOne(Long organizationId) {
         final String sql = "select id, name, parent_id, parent_ids, available from sys_organization where id=?";
         List<Organization> organizationList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Organization.class), organizationId);
-        if(organizationList.size() == 0) {
+        if (organizationList.size() == 0) {
             return null;
         }
         return organizationList.get(0);

@@ -3,9 +3,10 @@ package com.chenyan.springshiro.entity;
 import java.io.Serializable;
 
 /**
-* <p>Title: Organization</p>  
-* @author chenyan  
-* @date 2019年8月28日
+ * <p>Title: Organization</p>
+ *
+ * @author chenyan
+ * @date 2019年8月28日
  */
 public class Organization implements Serializable {
     private Long id; //编号

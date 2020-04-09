@@ -7,17 +7,17 @@ import lombok.Data;
 
 /**
  * 开发人员选项
- * @author chenyan
  *
+ * @author chenyan
  */
 @Data
 @ConfigurationProperties(prefix = "developer")
 @Component
 public class DeveloperProperty {
-	
-	private String name ;
-	private String website ;
-	private String qq ;
-	private String phoneNumber ;
+
+    private String name;
+    private String website;
+    private String qq;
+    private String phoneNumber;
 
 }

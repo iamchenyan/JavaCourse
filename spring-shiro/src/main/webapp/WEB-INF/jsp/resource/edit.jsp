@@ -8,42 +8,42 @@
 </head>
 <body>
 
-    <form:form method="post" commandName="resource">
-        <form:hidden path="id"/>
-        <form:hidden path="available"/>
-        <form:hidden path="parentId"/>
-        <form:hidden path="parentIds"/>
+<form:form method="post" commandName="resource">
+    <form:hidden path="id"/>
+    <form:hidden path="available"/>
+    <form:hidden path="parentId"/>
+    <form:hidden path="parentIds"/>
 
-        <c:if test="${not empty parent}">
-            <div class="form-group">
-                <label>父节点名称：</label>
+    <c:if test="${not empty parent}">
+        <div class="form-group">
+            <label>父节点名称：</label>
                 ${parent.name}
-            </div>
-        </c:if>
-
-        <div class="form-group">
-            <form:label path="name"><c:if test="${not empty parent}">子</c:if>名称：</form:label>
-            <form:input path="name"/>
         </div>
-        <div class="form-group">
-            <form:label path="type">类型：</form:label>
-            <form:select path="type" items="${types}" itemLabel="info"/>
-        </div>
+    </c:if>
 
-        <div class="form-group">
-            <form:label path="url">URL路径：</form:label>
-            <form:input path="url"/>
-        </div>
+    <div class="form-group">
+        <form:label path="name"><c:if test="${not empty parent}">子</c:if>名称：</form:label>
+        <form:input path="name"/>
+    </div>
+    <div class="form-group">
+        <form:label path="type">类型：</form:label>
+        <form:select path="type" items="${types}" itemLabel="info"/>
+    </div>
+
+    <div class="form-group">
+        <form:label path="url">URL路径：</form:label>
+        <form:input path="url"/>
+    </div>
 
 
-        <div class="form-group">
-            <form:label path="permission">权限字符串：</form:label>
-            <form:input path="permission"/>
-        </div>
+    <div class="form-group">
+        <form:label path="permission">权限字符串：</form:label>
+        <form:input path="permission"/>
+    </div>
 
-        <form:button>${op}</form:button>
+    <form:button>${op}</form:button>
 
-    </form:form>
+</form:form>
 
 </body>
 </html>

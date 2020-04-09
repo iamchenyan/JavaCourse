@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-* <p>Title: Role</p>  
-* @author chenyan  
-* @date 2019年8月28日
+ * <p>Title: Role</p>
+ *
+ * @author chenyan
+ * @date 2019年8月28日
  */
 public class Role implements Serializable {
     private Long id; //编号
@@ -53,7 +54,7 @@ public class Role implements Serializable {
     }
 
     public List<Long> getResourceIds() {
-        if(resourceIds == null) {
+        if (resourceIds == null) {
             resourceIds = new ArrayList<Long>();
         }
         return resourceIds;
@@ -64,11 +65,11 @@ public class Role implements Serializable {
     }
 
     public String getResourceIdsStr() {
-        if(CollectionUtils.isEmpty(resourceIds)) {
+        if (CollectionUtils.isEmpty(resourceIds)) {
             return "";
         }
         StringBuilder s = new StringBuilder();
-        for(Long resourceId : resourceIds) {
+        for (Long resourceId : resourceIds) {
             s.append(resourceId);
             s.append(",");
         }
@@ -76,12 +77,12 @@ public class Role implements Serializable {
     }
 
     public void setResourceIdsStr(String resourceIdsStr) {
-        if(StringUtils.isEmpty(resourceIdsStr)) {
+        if (StringUtils.isEmpty(resourceIdsStr)) {
             return;
         }
         String[] resourceIdStrs = resourceIdsStr.split(",");
-        for(String resourceIdStr : resourceIdStrs) {
-            if(StringUtils.isEmpty(resourceIdStr)) {
+        for (String resourceIdStr : resourceIdStrs) {
+            if (StringUtils.isEmpty(resourceIdStr)) {
                 continue;
             }
             getResourceIds().add(Long.valueOf(resourceIdStr));

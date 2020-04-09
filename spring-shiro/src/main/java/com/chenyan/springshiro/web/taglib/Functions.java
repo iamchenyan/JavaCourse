@@ -14,14 +14,15 @@ import com.chenyan.springshiro.service.RoleService;
 import spring.SpringUtils;
 
 /**
-* <p>Title: Functions</p>  
-* @author chenyan  
-* @date 2019年9月4日
+ * <p>Title: Functions</p>
+ *
+ * @author chenyan
+ * @date 2019年9月4日
  */
 public class Functions {
 
     public static boolean in(Iterable iterable, Object element) {
-        if(iterable == null) {
+        if (iterable == null) {
             return false;
         }
         return CollectionUtils.contains(iterable.iterator(), element);
@@ -29,85 +30,88 @@ public class Functions {
 
     public static String organizationName(Long organizationId) {
         Organization organization = getOrganizationService().findOne(organizationId);
-        if(organization == null) {
+        if (organization == null) {
             return "";
         }
         return organization.getName();
     }
 
     public static String organizationNames(Collection<Long> organizationIds) {
-        if(CollectionUtils.isEmpty(organizationIds)) {
+        if (CollectionUtils.isEmpty(organizationIds)) {
             return "";
         }
 
         StringBuilder s = new StringBuilder();
-        for(Long organizationId : organizationIds) {
+        for (Long organizationId : organizationIds) {
             Organization organization = getOrganizationService().findOne(organizationId);
-            if(organization == null) {
+            if (organization == null) {
                 return "";
             }
             s.append(organization.getName());
             s.append(",");
         }
 
-        if(s.length() > 0) {
+        if (s.length() > 0) {
             s.deleteCharAt(s.length() - 1);
         }
 
         return s.toString();
     }
+
     public static String roleName(Long roleId) {
         Role role = getRoleService().findOne(roleId);
-        if(role == null) {
+        if (role == null) {
             return "";
         }
         return role.getDescription();
     }
 
     public static String roleNames(Collection<Long> roleIds) {
-        if(CollectionUtils.isEmpty(roleIds)) {
+        if (CollectionUtils.isEmpty(roleIds)) {
             return "";
         }
 
         StringBuilder s = new StringBuilder();
-        for(Long roleId : roleIds) {
+        for (Long roleId : roleIds) {
             Role role = getRoleService().findOne(roleId);
-            if(role == null) {
+            if (role == null) {
                 return "";
             }
             s.append(role.getDescription());
             s.append(",");
         }
 
-        if(s.length() > 0) {
+        if (s.length() > 0) {
             s.deleteCharAt(s.length() - 1);
         }
 
         return s.toString();
     }
+
     public static String resourceName(Long resourceId) {
         Resource resource = getResourceService().findOne(resourceId);
-        if(resource == null) {
+        if (resource == null) {
             return "";
         }
         return resource.getName();
     }
+
     public static String resourceNames(Collection<Long> resourceIds) {
-        if(CollectionUtils.isEmpty(resourceIds)) {
+        if (CollectionUtils.isEmpty(resourceIds)) {
             return "";
         }
 
         StringBuilder s = new StringBuilder();
-        for(Long resourceId : resourceIds) {
+        for (Long resourceId : resourceIds) {
             Resource resource = getResourceService().findOne(resourceId);
-            if(resource == null) {
+            if (resource == null) {
                 return "";
             }
             s.append(resource.getName());
             s.append(",");
         }
 
-        if(s.length() > 0) {
+        if (s.length() > 0) {
             s.deleteCharAt(s.length() - 1);
         }
 
@@ -119,21 +123,21 @@ public class Functions {
     private static ResourceService resourceService;
 
     public static OrganizationService getOrganizationService() {
-        if(organizationService == null) {
+        if (organizationService == null) {
             organizationService = SpringUtils.getBean(OrganizationService.class);
         }
         return organizationService;
     }
 
     public static RoleService getRoleService() {
-        if(roleService == null) {
+        if (roleService == null) {
             roleService = SpringUtils.getBean(RoleService.class);
         }
         return roleService;
     }
 
     public static ResourceService getResourceService() {
-        if(resourceService == null) {
+        if (resourceService == null) {
             resourceService = SpringUtils.getBean(ResourceService.class);
         }
         return resourceService;

@@ -9,44 +9,45 @@ import com.shirossm.mapper.RoleMapper;
 import com.shirossm.pojo.Role;
 import com.shirossm.service.RoleService;
 
-/**  
-* <p>Title: RoleServiceImpl</p>  
-* @author chenyan  
-* @date 2019年9月26日  
-*/
+/**
+ * <p>Title: RoleServiceImpl</p>
+ *
+ * @author chenyan
+ * @date 2019年9月26日
+ */
 @Service
 public class RoleServiceImpl implements RoleService {
 
-	@Autowired
-	private RoleMapper roleMapper ;
-	
-	@Override
-	public List<Role> findAll() {
-		return roleMapper.findAll() ;
-	}
+    @Autowired
+    private RoleMapper roleMapper;
 
-	@Override
-	public Object findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<Role> findAll() {
+        return roleMapper.findAll();
+    }
 
-	@Override
-	public void create(Object t) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public Object findById(Long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	@Override
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void create(Object t) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void update(Object t) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
+
+    @Override
+    public void delete(Long id) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void update(Object t) {
+        // TODO Auto-generated method stub
+
+    }
 
 }

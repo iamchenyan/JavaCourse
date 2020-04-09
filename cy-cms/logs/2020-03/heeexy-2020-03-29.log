@@ -1,0 +1,20 @@
+2020-03-29 14:58:02.943 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting CyCmsApplication on chenyan-PC with PID 7788 (E:\JavaCourse\cy-cms\target\classes started by chenyan in E:\JavaCourse\cy-cms)
+2020-03-29 14:58:02.947 INFO  --- [SpringApplication.java:662][restartedMain] - No active profile set, falling back to default profiles: default
+2020-03-29 14:58:03.876 WARN  --- [ClassPathMapperScanner.java:166][restartedMain] - No MyBatis mapper was found in '[com.cms.cycms.dao.mappers]' package. Please check your configuration.
+2020-03-29 14:58:04.065 WARN  --- [ClassPathMapperScanner.java:166][restartedMain] - No MyBatis mapper was found in '[com.cms.cycms]' package. Please check your configuration.
+2020-03-29 14:58:06.028 WARN  --- [AbstractApplicationContext.java:558][restartedMain] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'cmsUserServiceImpl': Unsatisfied dependency expressed through field 'cmsUserMapper'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.cms.cycms.dao.CmsUserMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2020-03-29 14:58:06.253 ERROR --- [LoggingFailureAnalysisReporter.java:42][restartedMain] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field cmsUserMapper in com.cms.cycms.service.impl.CmsUserServiceImpl required a bean of type 'com.cms.cycms.dao.CmsUserMapper' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.cms.cycms.dao.CmsUserMapper' in your configuration.
+

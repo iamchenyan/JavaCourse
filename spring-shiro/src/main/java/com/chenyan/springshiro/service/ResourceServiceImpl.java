@@ -13,85 +13,86 @@ import org.springframework.util.StringUtils;
 import com.chenyan.springshiro.dao.ResourceDao;
 import com.chenyan.springshiro.entity.Resource;
 
-/**  
-* <p>Title: ResourceServiceImpl</p>  
-* @author chenyan  
-* @date 2019年9月2日  
-*/
+/**
+ * <p>Title: ResourceServiceImpl</p>
+ *
+ * @author chenyan
+ * @date 2019年9月2日
+ */
 @Service
 public class ResourceServiceImpl implements ResourceService {
 
-	@Autowired
-	private ResourceDao resourceDao ;
-	
-	@Override
-	public Resource createResource(Resource resource) {
-		return resourceDao.createResource(resource) ;
-	}
+    @Autowired
+    private ResourceDao resourceDao;
 
-	@Override
-	public Resource updateResource(Resource resource) {
-		return resourceDao.updateResource(resource) ;
-	}
+    @Override
+    public Resource createResource(Resource resource) {
+        return resourceDao.createResource(resource);
+    }
 
-	@Override
-	public void deleteResource(Long resourceId) {
-		resourceDao.deleteResourcr(resourceId) ;
-	}
+    @Override
+    public Resource updateResource(Resource resource) {
+        return resourceDao.updateResource(resource);
+    }
 
-	@Override
-	public Resource findOne(Long resourceId) {
-		return resourceDao.findOne(resourceId) ;
-	}
+    @Override
+    public void deleteResource(Long resourceId) {
+        resourceDao.deleteResourcr(resourceId);
+    }
 
-	@Override
-	public List<Resource> findAll() {
-		return resourceDao.findAll() ;
-	}
+    @Override
+    public Resource findOne(Long resourceId) {
+        return resourceDao.findOne(resourceId);
+    }
 
-	@Override
-	public Set<String> findPermissions(Set<Long> resourceIds) {
-		Set<String> permissions = new HashSet<String>() ;
-		for(Long resourceId : resourceIds) {
-			Resource resource = findOne(resourceId) ;
-			if(resource != null && !StringUtils.isEmpty(resource.getPermission())) {
-				permissions.add(resource.getPermission()) ;
-			}
-		}
-		return permissions ;
-	}
+    @Override
+    public List<Resource> findAll() {
+        return resourceDao.findAll();
+    }
 
-	@Override
-	public List<Resource> findMenus(Set<String> permissions) {
-		List<Resource> allResource = findAll() ;
-		List<Resource> menus = new ArrayList<Resource>() ;
-		for(Resource resource : allResource) {
-			if(resource.isRootNode()) {
-				continue ;
-			}
-			if(resource.getType() != Resource.ResourceType.menu) {
-				continue ;
-			}
-			if(!hasPermission(permissions ,resource)) {
-				continue ;
-			}
-			menus.add(resource) ;
-		}
-		return menus ;
-	}
+    @Override
+    public Set<String> findPermissions(Set<Long> resourceIds) {
+        Set<String> permissions = new HashSet<String>();
+        for (Long resourceId : resourceIds) {
+            Resource resource = findOne(resourceId);
+            if (resource != null && !StringUtils.isEmpty(resource.getPermission())) {
+                permissions.add(resource.getPermission());
+            }
+        }
+        return permissions;
+    }
 
-	private boolean hasPermission(Set<String> permissions, Resource resource) {
-		if(StringUtils.isEmpty(resource.getPermission())) {
-			return true ;
-		}
-		for(String permission : permissions) {
-			WildcardPermission p1 = new WildcardPermission(permission) ;
-			WildcardPermission p2 = new WildcardPermission(resource.getPermission()) ;
-			if(p1.implies(p2) || p2.implies(p1)) {
-				return true ;
-			}
-		}
-		return false;
-	}
+    @Override
+    public List<Resource> findMenus(Set<String> permissions) {
+        List<Resource> allResource = findAll();
+        List<Resource> menus = new ArrayList<Resource>();
+        for (Resource resource : allResource) {
+            if (resource.isRootNode()) {
+                continue;
+            }
+            if (resource.getType() != Resource.ResourceType.menu) {
+                continue;
+            }
+            if (!hasPermission(permissions, resource)) {
+                continue;
+            }
+            menus.add(resource);
+        }
+        return menus;
+    }
+
+    private boolean hasPermission(Set<String> permissions, Resource resource) {
+        if (StringUtils.isEmpty(resource.getPermission())) {
+            return true;
+        }
+        for (String permission : permissions) {
+            WildcardPermission p1 = new WildcardPermission(permission);
+            WildcardPermission p2 = new WildcardPermission(resource.getPermission());
+            if (p1.implies(p2) || p2.implies(p1)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

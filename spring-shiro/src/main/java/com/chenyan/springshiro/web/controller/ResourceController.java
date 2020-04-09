@@ -12,25 +12,26 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.chenyan.springshiro.entity.Resource;
 import com.chenyan.springshiro.service.ResourceService;
 
-/**  
-* <p>Title: ResourceController</p>  
-* @author chenyan  
-* @date 2019年9月5日  
-*/
+/**
+ * <p>Title: ResourceController</p>
+ *
+ * @author chenyan
+ * @date 2019年9月5日
+ */
 @Controller
 @RequestMapping("/resource")
 public class ResourceController {
 
-	@Autowired
-	private ResourceService resourceService ;
-	
-	@RequiresPermissions("resource:view")
-	@RequestMapping(method = RequestMethod.GET)
-	public String list(Model model) {
-		model.addAttribute("resourceList" ,resourceService.findAll()) ;
-		return "resource/list" ;
-	}
-	
+    @Autowired
+    private ResourceService resourceService;
+
+    @RequiresPermissions("resource:view")
+    @RequestMapping(method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("resourceList", resourceService.findAll());
+        return "resource/list";
+    }
+
     @RequiresPermissions("resource:create")
     @RequestMapping(value = "/{parentId}/appendChild", method = RequestMethod.GET)
     public String showAppendChildForm(@PathVariable("parentId") Long parentId, Model model) {
@@ -75,5 +76,5 @@ public class ResourceController {
         redirectAttributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/resource";
     }
-	
+
 }

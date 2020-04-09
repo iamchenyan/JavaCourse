@@ -7,25 +7,26 @@ import com.shirossm.pojo.Role;
 import com.shirossm.pojo.User;
 
 /**
-* <p>Title: UserMapper</p>  
-* @author chenyan  
-* @date 2019年9月18日
+ * <p>Title: UserMapper</p>
+ *
+ * @author chenyan
+ * @date 2019年9月18日
  */
 public interface UserMapper {
 
-    User findByName(String username) ;
-    
-    void create(User user) ;
-    
-    void update(User user) ;
-    
-    List<User> findAll() ;
-    
-    List<Role> findRoles(String username) ;
-    
-    List<Permission> findPermissions(String username) ;
-    
-    void correlationRoles(Long userId ,Long... roleIds) ;
+    User findByName(String username);
 
-    void deleteAllUserRoles(Long id) ;
+    void create(User user);
+
+    void update(User user);
+
+    List<User> findAll();
+
+    List<Role> findRoles(String username);
+
+    List<Permission> findPermissions(String username);
+
+    void correlationRoles(Long userId, Long... roleIds);
+
+    void deleteAllUserRoles(Long id);
 }

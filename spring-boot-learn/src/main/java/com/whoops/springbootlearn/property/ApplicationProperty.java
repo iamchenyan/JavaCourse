@@ -7,17 +7,17 @@ import lombok.Data;
 
 /**
  * 项目配置
- * @author chenyan
  *
+ * @author chenyan
  */
 @Data
 @Component
 public class ApplicationProperty {
-	
-	@Value("${application.name}")
-	private String name ;
-	
-	@Value("${application.version}")
-	private String version ;
-				
+
+    @Value("${application.name}")
+    private String name;
+
+    @Value("${application.version}")
+    private String version;
+
 }

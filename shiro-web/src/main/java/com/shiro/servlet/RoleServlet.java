@@ -1,5 +1,6 @@
 /**
  * <p>Title: RoleServlet.java</p>
+ *
  * @author chenyan
  * @date 2019年8月14日
  */
@@ -16,19 +17,19 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
-/**  
-* <p>Title: RoleServlet</p>  
-* @author chenyan  
-* @date 2019年8月14日  
-*/
-@WebServlet(name = "roleServlet" ,urlPatterns = "/role")
+/**
+ * <p>Title: RoleServlet</p>
+ * @author chenyan
+ * @date 2019年8月14日
+ */
+@WebServlet(name = "roleServlet", urlPatterns = "/role")
 public class RoleServlet extends HttpServlet {
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Subject subject = SecurityUtils.getSubject() ;
-		subject.checkRole("admin") ;
-		request.getRequestDispatcher("/WEB-INF/jsp/hasRole.jsp").forward(request, response) ;
-	}
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Subject subject = SecurityUtils.getSubject();
+        subject.checkRole("admin");
+        request.getRequestDispatcher("/WEB-INF/jsp/hasRole.jsp").forward(request, response);
+    }
 
 }

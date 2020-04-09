@@ -50,9 +50,9 @@
     });
 
     //处理默认选中的方法
-    function checkNodes(){
+    function checkNodes() {
         //模拟数据库中已存在的数据（要实现默认选中的数据）
-        var data = [{"id": 21, "name": "总经理", "pid": 0},{"id":'27', "name": "项目经理", "pid": 26}];
+        var data = [{"id": 21, "name": "总经理", "pid": 0}, {"id": '27', "name": "项目经理", "pid": 26}];
 
         var zTree = $.fn.zTree.getZTreeObj("tree"); //获取zTree对象
         data.forEach(row => {

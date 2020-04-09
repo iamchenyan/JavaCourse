@@ -3,9 +3,10 @@ package com.chenyan.springshiro.entity;
 import java.io.Serializable;
 
 /**
-* <p>Title: Resource</p>  
-* @author chenyan  
-* @date 2019年8月28日
+ * <p>Title: Resource</p>
+ *
+ * @author chenyan
+ * @date 2019年8月28日
  */
 public class Resource implements Serializable {
     private Long id; //编号
@@ -21,6 +22,7 @@ public class Resource implements Serializable {
         menu("菜单"), button("按钮");
 
         private final String info;
+
         private ResourceType(String info) {
             this.info = info;
         }
@@ -29,7 +31,6 @@ public class Resource implements Serializable {
             return info;
         }
     }
-
 
 
     public Long getId() {
@@ -103,6 +104,7 @@ public class Resource implements Serializable {
     public String makeSelfAsParentIds() {
         return getParentIds() + getId() + "/";
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

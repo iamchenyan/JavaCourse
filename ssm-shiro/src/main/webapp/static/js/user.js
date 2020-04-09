@@ -258,7 +258,7 @@ $(".create-sure").click(function () {
                 password: password
             }),
             success: (data) => {
-                if (data.success){
+                if (data.success) {
                     window.location.reload();
                 }
             },
@@ -278,7 +278,7 @@ $(".create-sure").click(function () {
                 password: password
             }),
             success: (data) => {
-                if (data.success){
+                if (data.success) {
                     window.location.reload();
                 }
             },
@@ -290,13 +290,13 @@ $(".create-sure").click(function () {
 });
 
 //删除用户数据
-function deleteUser(id){
-    if (id != null && id != ""){
+function deleteUser(id) {
+    if (id != null && id != "") {
         $.ajax({
-            url: '../../user/delete.do?id='+id,
+            url: '../../user/delete.do?id=' + id,
             type: 'get',
             success: (data) => {
-                if (data.success){
+                if (data.success) {
                     window.location.reload();
                 }
             },

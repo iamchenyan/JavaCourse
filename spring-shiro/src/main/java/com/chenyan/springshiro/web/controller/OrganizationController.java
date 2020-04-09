@@ -13,26 +13,27 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.chenyan.springshiro.entity.Organization;
 import com.chenyan.springshiro.service.OrganizationService;
 
-/**  
-* <p>Title: OrganizationController</p>  
-* @author chenyan  
-* @date 2019年9月5日  
-*/
+/**
+ * <p>Title: OrganizationController</p>
+ *
+ * @author chenyan
+ * @date 2019年9月5日
+ */
 @Controller
 @RequestMapping("/organization")
 public class OrganizationController {
 
-	@Autowired
-	private OrganizationService organizationService ;
-	
-	@RequiresPermissions("organization:view")
-	@RequestMapping(method = RequestMethod.GET)
-	public String index(Model model) {
-		model.addAttribute("organizationList" ,organizationService.findAll()) ;
-		return "organization/index" ;
-	}
-	
-	@RequiresPermissions("organization:view")
+    @Autowired
+    private OrganizationService organizationService;
+
+    @RequiresPermissions("organization:view")
+    @RequestMapping(method = RequestMethod.GET)
+    public String index(Model model) {
+        model.addAttribute("organizationList", organizationService.findAll());
+        return "organization/index";
+    }
+
+    @RequiresPermissions("organization:view")
     @RequestMapping(value = "/tree", method = RequestMethod.GET)
     public String showTree(Model model) {
         model.addAttribute("organizationList", organizationService.findAll());
@@ -108,5 +109,5 @@ public class OrganizationController {
     public String success() {
         return "organization/success";
     }
-	
+
 }

@@ -8,13 +8,13 @@
 </head>
 <body>
 
-    <form method="post">
-        <div class="form-group">
-            <label for="newPassword">新密码：</label>
-            <input type="text" id="newPassword" name="newPassword"/>
-        </div>
-        <input type="submit" value="${op}">
-    </form>
+<form method="post">
+    <div class="form-group">
+        <label for="newPassword">新密码：</label>
+        <input type="text" id="newPassword" name="newPassword"/>
+    </div>
+    <input type="submit" value="${op}">
+</form>
 
 </body>
 </html>
