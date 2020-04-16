@@ -42,12 +42,7 @@ public class ConcentServiceImpl {
     @Autowired
     private RestHighLevelClient restHighLevelClient;
 
-    /**
-     * 解析数据放入 es
-     * @param keywords
-     * @return boolean
-     * @throws Exception
-     */
+    // 解析数据放入 es
     public boolean parseContent(String keywords) throws Exception {
         List<Content> contents = new HtmlParseUtil().parseJDSearch(keywords);
 

@@ -1,0 +1,10 @@
+
+a
+java:S1192Q"FDefine a constant instead of duplicating this literal "title" 5 times.(—üı„üÿÿÿÿ
+a
+java:S11928"KDefine a constant instead of duplicating this literal "goods_list" 3 times.(ÀğÌĞ
+8
+java:S1643ˆ"Use a StringBuilder instead.(‘­¯ıÿÿÿÿ
+g	java:S117†"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿî¢­
+S	java:S1067"9Replace this use of System.out or System.err by a logger.(¿­³êıÿÿÿÿ
+Q	java:S125@"<This block of commented-out lines of code should be removed.(ğñ£†
